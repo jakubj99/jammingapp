@@ -1,15 +1,24 @@
-import React from "react";
-import { Tracklist } from './Tracklist';
-import './Searchresult.css';
+import React from 'react'
+import './SearchResult.css'
+import Track from '../Track/Track'
 
-
-export class SearchResult extends React.Component{
-    render(){
-        return (
-            <div className="SearchResults">
-                <h2>Results</h2>
-                    <Tracklist />
-                </div>
-        );
-    }
+function SearchResults(props) {
+    return (
+        <div className="SearchResults">
+            <h2>Results</h2>
+            <div className="TrackList">
+            {
+                props.tracks.map(track => {
+                    return(<Track
+                        key={track.id}
+                        track={track}
+                        trackActionCharacter="+"
+                        handleTrackAction={props.addTrackToPlaylist}/>)
+                })
+            }
+            </div>
+        </div>
+    )
 }
+
+export default SearchResults;
